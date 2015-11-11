@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+    <h1 id="toChange">Key : Value</h1>
+    <input type="text" id="question"/>
+    <button onclick="LeggTilPerson()">Click me</button>
+
+</body>
+</html>
+
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"></script>
+
+<script>
+
+    function LeggTilPerson() {
+
+        $.support.cors = true;
+
+        var NewPost = {
+            Question: $('#question').val()
+        };
+
+        $.ajax({
+            url: '/api/posts',
+            type: 'POST',
+            data: JSON.stringify(NewPost),
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                ListAll(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+
+    function HentAllePersoner() {
+        $.ajax({
+            url: '/api/posts',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                ListAll(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+
+    function ListAll(data) {
+
+        $.each(data, function (i, p) {
+
+            console.log(p.Question)
+
+        });
+
+        $('#toChange').html("kalles på");
+
+    }
+
+
+</script>
