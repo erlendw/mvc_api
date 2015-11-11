@@ -34,4 +34,3 @@ namespace TeaShopFaq.App_Start
         }
 
     }
-}
