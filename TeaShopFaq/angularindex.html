@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html ng-app="listeApp">
+<head>
+    <title>Gjøremål</title>
+    <script src="Scripts/angular.js"></script>
+    <script>
+ angular.module("listeApp", [])
+ .controller("listeController", function ($scope) {
+ $scope.liste =
+ [
+ { aksjon: "Kjøp grønnsaker", ferdig: "Nei" },
+ { aksjon: "Ring rørlegger", ferdig: "Nei" },
+ { aksjon: "Kjøp blomster", ferdig: "Ja" },
+ { aksjon: "Ring søster", ferdig: "Nei" },
+ { aksjon: "Kjøp bil", ferdig: "Nei" }
+ ];
+ $scope.visning = "ingen";
+ // dette for å initsiere visnings-vaiablen at "Ingen" er sjekket!
+ $scope.LeggInnNyAksjon = function () {
+ var innJsonObjekt = {aksjon:$scope.innAksjon,ferdig:$scope.innStatus};
+ $scope.liste.push(innJsonObjekt); // legg inn et nytt JSON-objekt i lista
+ };
+ $scope.slettAksjon = function (id) {
+ $scope.liste.splice(id, 1);
+// slett et JSON-objekt fra lista fra id-posisjonen
+ };
+ });
+    </script>
+</head>
+<body>
+    <div ng-controller="listeController">
+        <h3>Gjøremål</h3>
+        <div>
+            <input type="radio" ng-model="visning" value="ingen" checked />Ingen
+            <br />
+            <input type="radio" ng-model="visning" value="visTabell" />Tabell
+            <br />
+            <input type="radio" ng-model="visning" value="visListe" />Liste
+            <br />
+            Ny aksjon og status
+            <input type="text" ng-model="innAksjon" />
+            <input type="radio" ng-model="innStatus" value="Ja" />Ferdig
+            <input type="radio" ng-model="innStatus" value="Nei" />Ikke ferdig
+            <button ng-click="LeggInnNyAksjon()">Registrer</button>
+        </div>
+        <div ng-show="visning=='visTabell'">
+            <table>
+                <thead>
+                    <tr><th>Nr</th><th>Gjøremål</th><th>Utført</th></tr>
+                </thead>
+                <tr ng-repeat="element in liste">
+                    <td>{{$index + 1}}</td>
+                    <td>{{element.aksjon}}</td>
+                    <td>{{element.ferdig}}</td>
+                    <td><button ng-click="slettAksjon($index)">Slett</button></td>
+                </tr>
+            </table>
+        </div>
+        <div ng-show="visning=='visListe'">
+            <ol>
+                <li ng-repeat="element in liste">
+                    {{element.aksjon}}<span ng-show="element.ferdig=='Ja'"> (Utført)</span>
+                    <button ng-click="slettAksjon($index)">Slett</button>
+                </li>
+            </ol>
+        </div>
+        <div ng-show="visning=='ingen'">
+            Velg noe for å vise i tabell eller liste.
+        </div>
+    </div>
+</body>
+</html>
