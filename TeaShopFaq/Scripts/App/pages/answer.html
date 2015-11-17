@@ -1,4 +1,35 @@
 ﻿
+<div class="container" ng-controller="GetAll">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Post ID</th>
+                <th>Question</th>
+                <th>Submitter</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr ng-repeat="post in posts" ng-if="post.IsAnswered == false">
+
+                <td>{{post.PostId}}</td>
+                <td>{{post.Question}}</td>
+                <td>{{post.UserEmail}}</td>
+                <td>{{post.TimeStamp}}</td>
+                
+
+             </tr>
+        </tbody>
+
+    </table>
+
+    </div>
+
+</div>
+
+
 <div class="row" ng-controller="postController">
 
     <div class="col-md-6 col-md-offset-3">

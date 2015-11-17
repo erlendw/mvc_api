@@ -18,6 +18,8 @@ namespace TeaShopFaq.Models
                     PostId = p.PostId,
                     Question = p.Question,
                     Answer = p.Answer,
+                    TimeStamp = p.TimeStamp,
+                    UserEmail = p.UserEmail,
                     IsAnswered = p.IsAnswered
                 }).ToList();
 
@@ -64,6 +66,7 @@ namespace TeaShopFaq.Models
                               where p.PostId == InnPost.PostId
                               select p).First();
                 post.Answer = InnPost.Answer;
+                post.IsAnswered = true;
                 db.SaveChanges();
             }
 
