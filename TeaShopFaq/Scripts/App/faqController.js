@@ -41,6 +41,17 @@ App.controller('postController', function ($scope, $http) {
 
     }
 
+    $scope.updatePost = function () {
+
+        var data = {
+            PostId: $scope.PostId,
+            Answer: $scope.Answer
+        }
+
+        $http.put('/api/posts', data)
+
+    }
+
 });
 
 

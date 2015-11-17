@@ -57,47 +57,17 @@ namespace TeaShopFaq.Models
         }
 
         public void UpdatePost(Post InnPost)
-        {
-           
-            Posts Post = FindPostById(InnPost.PostId);
-
-            if(Post != null)
-            {
-
-                using (var db = new FaqContext())
-                {
-
-                    Post.Answer = InnPost.Answer;
-
-                    db.SaveChanges();
-
-                }
-
-            }
-         
-
-        }
-
-        public Posts FindPostById(int id)
-        {
+        { 
             using (var db = new FaqContext())
             {
-                List<Posts> Posts = db.Posts.ToList();
-
-                for(int i = 0; i > Posts.Count; i++)
-                {
-
-                    if(Posts[i].PostId == id)
-                    {
-                        return Posts[i];
-                    }
-                }
-                return null;
+                Posts post = (from p in db.Posts
+                              where p.PostId == InnPost.PostId
+                              select p).First();
+                post.Answer = InnPost.Answer;
+                db.SaveChanges();
             }
 
         }
-
-
 
     }
 

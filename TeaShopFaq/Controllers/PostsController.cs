@@ -32,6 +32,18 @@ namespace TeaShopFaq.Controllers
 
         }
 
+        public List<Post> Put(Post post)
+        {
+
+            
+
+            Debug.WriteLine(post.PostId + " | " + post.Answer);
+
+            db.UpdatePost(post);
+            return db.GetAllPosts();
+
+        }
+
 
     }
 }
