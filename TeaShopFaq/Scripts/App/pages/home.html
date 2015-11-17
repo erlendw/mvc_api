@@ -1,6 +1,21 @@
-﻿<!-- home.html -->
-<div class="jumbotron text-center">
-    <h1>Home Page</h1>
+﻿<!-- contact.html -->
+<div class="container" ng-controller="GetAll">
+    
+    <div ng-repeat="post in posts">
 
-    <p>{{ message }}</p>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>{{post.Question}}</h4>
+                </div>
+                <div class="panel-body">
+                    <p>{{post.Answer}}</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
 </div>
+

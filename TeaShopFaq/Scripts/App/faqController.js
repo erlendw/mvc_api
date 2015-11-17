@@ -7,32 +7,33 @@ App.config(function ($routeProvider) {
 
         // route for the home page
         .when('/', {
-            templateUrl: 'pages/home.html',
+            templateUrl: 'pages/home.html'
         })
 
         // route for the about page
         .when('/about', {
-            templateUrl: 'pages/about.html',
+            templateUrl: 'pages/about.html'
         })
 
         // route for the contact page
         .when('/contact', {
-            templateUrl: 'pages/submit.html',
+            templateUrl: 'pages/submit.html'
         });
 });
 
 // create the controller and inject Angular's $scope
-App.controller('mainController', function ($scope) {
-    // create a message to display in our view
-    $scope.message = 'Everyone come and see how good I look!';
-});
+App.controller('postController', function ($scope, $http) {
 
-App.controller('aboutController', function ($scope) {
-    $scope.message = 'Look! I am an about page.';
-});
+    $scope.addPost = function () {
 
-App.controller('submitController', function ($scope) {
-    $scope.message = 'Contact us! JK. This is just a demo.';
+        console.log('kommer hit');
+
+        var data = { Question: $scope.Question }
+
+        $http.post('/api/posts', data)
+
+    }
+
 });
 
 

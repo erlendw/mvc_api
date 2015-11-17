@@ -37,6 +37,7 @@ namespace TeaShopFaq.Models
                 NewPostRow.PostId = NewPost.PostId;
                 NewPostRow.Question = NewPost.Question;
                 NewPostRow.Answer = NewPost.Answer;
+                NewPostRow.TimeStamp = DateTime.Now.ToString();
                 NewPostRow.IsAnswered = false;
 
                 db.Posts.Add(NewPostRow);
