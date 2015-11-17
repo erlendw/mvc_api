@@ -30,7 +30,7 @@ namespace TeaShopFaq.App_Start
 
                 bundles.Add(new ScriptBundle("~/bundles/theteashop").Include(
                          "~/Scripts/theteashop.js"));
-            }
+        }
         }
 
     }
