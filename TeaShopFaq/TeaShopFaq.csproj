@@ -109,6 +109,7 @@
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
     <Content Include="Scripts\App\pages\about.html" />
+    <Content Include="Scripts\App\pages\answer.html" />
     <Content Include="Scripts\App\pages\submit.html" />
     <Content Include="Scripts\App\faqController.js" />
     <Content Include="Scripts\App\pages\home.html" />

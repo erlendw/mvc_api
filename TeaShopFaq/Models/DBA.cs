@@ -27,7 +27,7 @@ namespace TeaShopFaq.Models
 
         public void AddPost(Post NewPost)
         {
-
+            Debug.WriteLine(NewPost.Category);
 
             try { 
 
@@ -37,6 +37,7 @@ namespace TeaShopFaq.Models
                 NewPostRow.PostId = NewPost.PostId;
                 NewPostRow.Question = NewPost.Question;
                 NewPostRow.Answer = NewPost.Answer;
+                NewPostRow.Category = NewPost.Category;
                 NewPostRow.TimeStamp = DateTime.Now.ToString();
                 NewPostRow.IsAnswered = false;
 
@@ -55,6 +56,50 @@ namespace TeaShopFaq.Models
             }
         }
 
-        
+        public void UpdatePost(Post InnPost)
+        {
+           
+            Posts Post = FindPostById(InnPost.PostId);
+
+            if(Post != null)
+            {
+
+                using (var db = new FaqContext())
+                {
+
+                    Post.Answer = InnPost.Answer;
+
+                    db.SaveChanges();
+
+                }
+
+            }
+         
+
         }
+
+        public Posts FindPostById(int id)
+        {
+            using (var db = new FaqContext())
+            {
+                List<Posts> Posts = db.Posts.ToList();
+
+                for(int i = 0; i > Posts.Count; i++)
+                {
+
+                    if(Posts[i].PostId == id)
+                    {
+                        return Posts[i];
+                    }
+                }
+                return null;
+            }
+
+        }
+
+
+
+    }
+
+
     }

@@ -18,6 +18,10 @@ App.config(function ($routeProvider) {
         // route for the contact page
         .when('/contact', {
             templateUrl: 'pages/submit.html'
+        })
+        // route for the contact page
+        .when('/answer', {
+            templateUrl: 'pages/answer.html'
         });
 });
 
@@ -26,9 +30,12 @@ App.controller('postController', function ($scope, $http) {
 
     $scope.addPost = function () {
 
-        console.log('kommer hit');
+        console.log($scope.Category);
 
-        var data = { Question: $scope.Question }
+        var data = {
+            Question: $scope.Question,
+            Category: $scope.Category
+        }
 
         $http.post('/api/posts', data)
 

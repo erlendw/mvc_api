@@ -5,10 +5,16 @@
 
         <div class="form-group">
             <label for="message" class="h4 ">Message</label>
-            <textarea id="message" class="form-control" rows="3" placeholder="Enter your message" required name="Question" ng-model="Question"></textarea>
+            <textarea id="message" class="form-control" rows="3" placeholder="Enter your message" required ng-model="Question"></textarea>
+
+            <select class="form-control"  ng-model="Category">
+                <option value="Shipping">Shipping</option>
+                <option value="Pricing" >Pricing</option>
+                <option value="Tea Help" >Tea Help</option>
+                <option value="Other">Other</option>
+            </select>
+            <button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right " ng-click="addPost()">Submit</button>
         </div>
-        <button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right " ng-click="addPost()">Submit</button>
-        <div id="msgSubmit" class="h3 text-center hidden">Message Submitted!</div>
     
     </div>
 </div>
