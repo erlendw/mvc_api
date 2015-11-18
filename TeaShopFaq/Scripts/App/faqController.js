@@ -26,7 +26,7 @@ App.config(function ($routeProvider) {
 });
 
 // create the controller and inject Angular's $scope
-App.controller('postController', function ($scope, $http) {
+App.controller('postController',function ($scope, $http) {
 
     $scope.addPost = function () {
 
@@ -41,23 +41,36 @@ App.controller('postController', function ($scope, $http) {
 
     }
 
-    $scope.updatePost = function () {
+    $scope.updatePost = function (post) {
 
         var data = {
-            PostId: $scope.PostId,
-            Answer: $scope.Answer
+            PostId: post.PostId,
+            Answer: post.Answer
         }
 
-        $http.put('/api/posts', data)
+        console.log(data)
+
+       $http.put('/api/posts', data).success(function (data){
+            $scope.initFirst();
+        })
+    }
+
+    $scope.initFirst = function () {
+
+        $http.get('/api/posts').success(function (data) {
+        $scope.posts = data;
+        console.log(data)
+    });
 
     }
 
 });
 
 
-function GetAll($scope, $http) {
+/*function GetAll($scope, $http) {
     $http.get('/api/posts').
         success(function (data) {
             $scope.posts = data;
+            $scope.$apply();
         });
-}
+}*/

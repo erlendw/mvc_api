@@ -1,5 +1,5 @@
 ﻿
-<div class="container" ng-controller="GetAll">
+<div class="container" ng-init="initFirst()">
 
     <table class="table table-striped">
         <thead>
@@ -18,28 +18,33 @@
                 <td>{{post.Question}}</td>
                 <td>{{post.UserEmail}}</td>
                 <td>{{post.TimeStamp}}</td>
-                
 
-             </tr>
+
+            </tr>
         </tbody>
 
     </table>
 
+    <div>
+        <form novalidate class="simple-form">
+            Id: <input type="text" ng-model="post.PostId" /><br />
+            Answer: <input type="text" ng-model="post.Answer" /><br />
+            <input type="submit" ng-click="updatePost(post)" value="Save" />
+        </form>
     </div>
 
-</div>
+    <!--<div class="row">
 
+        <div class="col-md-6 col-md-offset-3">
 
-<div class="row" ng-controller="postController">
+            <form class="form-group" ng-submit="updatePost()">
+                <label for="message" class="h4 ">Message</label>
+                <input class="form-control" placeholder="0" type="number" required ng-model="controller.PostId" />
+                <textarea id="message" class="form-control" rows="3" placeholder="Enter your message" required ng-model="controller.Answer"></textarea>
+                <button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right ">Submit</button>
+            </form>
 
-    <div class="col-md-6 col-md-offset-3">
-
-        <div class="form-group">
-            <label for="message" class="h4 ">Message</label>
-            <input class="form-control" placeholder="0" type="number" required ng-model="PostId"/>
-            <textarea id="message" class="form-control" rows="3" placeholder="Enter your message" required ng-model="Answer"></textarea>
-            <button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right " ng-click="updatePost()">Submit</button>
         </div>
+    </div>-->
 
-    </div>
 </div>
