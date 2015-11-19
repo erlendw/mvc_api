@@ -67,23 +67,38 @@ App.controller('postController', function ($scope, $http, $location) {
 
     $scope.sortList = function (value) {
 
-        //bruk lokal liste
-
         var sortedlist = Array();
 
         $http.get('/api/posts').success(function (data) {
-            
-            for (i = 0; i < data.length; i++) {
 
-                console.log(data[i].Category + ' | ' + value);
 
-                if (data[i].Category == value) { sortedlist.push(data[i]) }
+
+            if (value == 'All') {
+
+                $scope.posts = data;
 
             }
 
-            console.log('blir kalt')
+            else if (value == 'Newest') {
 
-            $scope.posts = sortedlist;
+                $scope.posts = data;
+
+            }
+
+            else {
+
+                for (i = 0; i < data.length; i++) {
+
+                    console.log(data[i].Category + ' | ' + value);
+
+                    if (data[i].Category == value) { sortedlist.push(data[i]) }
+
+                }
+
+                $scope.posts = sortedlist;
+
+            }
+            
 
             console.log($scope.posts)
 

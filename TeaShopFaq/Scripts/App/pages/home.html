@@ -1,12 +1,26 @@
 ﻿<!-- contact.html -->
 <div class="container" ng-init="initFirst()"> 
 
-    <label class="radio-inline"><input name="sorter" type="radio" ng-model="value" value="newest" ng-change='sortList(value)'>Newest (most relevant)</label>
-    <label class="radio-inline"><input name="sorter" type="radio" ng-model="value" value="Shipping" ng-change='sortList(value)'>Shipping</label>
-    <label class="radio-inline"><input name="sorter" type="radio" ng-model="value" value="Pricing" ng-change='sortList(value)'>Pricing</label>
-    <label class="radio-inline"><input name="sorter" type="radio" ng-model="value" value="Tea Selection" ng-change='sortList(value)'>Tea Selection</label>
+    
+     <h3 class="lead">Sort by Category: </h3>    
 
-        <div ng-repeat="post in posts"> <!--xng-if="post.IsAnswered == true"> -->
+
+        <div class="btn-group" data-toggle="buttons">
+
+            
+            <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="All" ng-change='sortList(value)'>All</label>
+            <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="Newest" ng-change='sortList(value)'>Newest</label>
+            <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="Shipping" ng-change='sortList(value)'>Shipping</label>
+            <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="Pricing" ng-change='sortList(value)'>Pricing</label>
+            <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="Tea Selection" ng-change='sortList(value)'>Tea Selection</label>
+            <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="Other" ng-change='sortList(value)'>Other</label>
+
+
+    </div>
+
+    <hr />
+
+        <div ng-repeat="post in posts" ng-if="post.IsAnswered == true">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -19,5 +33,6 @@
                 </div>
             </div>
         </div>
-</div>
+    </div>
+
 

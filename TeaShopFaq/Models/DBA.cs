@@ -40,7 +40,8 @@ namespace TeaShopFaq.Models
                 NewPostRow.PostId = NewPost.PostId;
                 NewPostRow.Question = NewPost.Question;
                 NewPostRow.Answer = NewPost.Answer;
-                NewPostRow.Category = NewPost.Category;
+                if(NewPost.Category == null){ NewPostRow.Category = "Other";}
+                else NewPostRow.Category = NewPost.Category;
                 NewPostRow.UserEmail = NewPost.UserEmail;
                 NewPostRow.TimeStamp = DateTime.Now.ToString();
                 NewPostRow.IsAnswered = false;
