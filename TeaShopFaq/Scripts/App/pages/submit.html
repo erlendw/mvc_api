@@ -18,3 +18,21 @@
     
     </div>
 </div>
+
+
+<div>
+    <form novalidate class="simple-form">
+        Your e-mail: <input type="text" ng-model="post.UserEmail" /><br />
+        Answer: <input type="text" ng-model="post.Question" /><br />
+        <label class="radio-inline">
+            <input type="radio" name="radioGroup" id="radio1" value="Shipping" ng-model="post.Category"> Shipping
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="radioGroup" id="radio2" value="Pricing" ng-model="post.Category"> Pricing
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="radioGroup" id="radio3" value="Tea Selection" ng-model="post.Category"> Tea Selection
+        </label>
+        <input type="submit" ng-click="addPost(post)" value="Save" />
+    </form>
+</div>

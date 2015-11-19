@@ -40,6 +40,7 @@ namespace TeaShopFaq.Models
                 NewPostRow.Question = NewPost.Question;
                 NewPostRow.Answer = NewPost.Answer;
                 NewPostRow.Category = NewPost.Category;
+                NewPostRow.UserEmail = NewPost.UserEmail;
                 NewPostRow.TimeStamp = DateTime.Now.ToString();
                 NewPostRow.IsAnswered = false;
 
@@ -66,6 +67,7 @@ namespace TeaShopFaq.Models
                               where p.PostId == InnPost.PostId
                               select p).First();
                 post.Answer = InnPost.Answer;
+                post.TimeStamp = DateTime.Now.ToString();
                 post.IsAnswered = true;
                 db.SaveChanges();
             }
