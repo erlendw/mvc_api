@@ -67,6 +67,8 @@ App.controller('postController', function ($scope, $http, $location) {
 
     $scope.sortList = function (value) {
 
+        //bruk lokal liste
+
         var sortedlist = Array();
 
         $http.get('/api/posts').success(function (data) {
