@@ -26,7 +26,8 @@ App.config(function ($routeProvider) {
 });
 
 // create the controller and inject Angular's $scope
-App.controller('postController',function ($scope, $http, $location) {
+App.controller('postController', function ($scope, $http, $location) {
+
 
     $scope.addPost = function (post) {
 
@@ -60,16 +61,33 @@ App.controller('postController',function ($scope, $http, $location) {
 
         $http.get('/api/posts').success(function (data) {
         $scope.posts = data;
-        console.log(data)
     });
 
     }
 
-    $scope.seeDetails = function (post) {
+    $scope.sortList = function (value) {
 
-        console.log(post.PostId);
-        $location.path(/contact/);
+        var sortedlist = Array();
 
+        $http.get('/api/posts').success(function (data) {
+            
+            for (i = 0; i < data.length; i++) {
+
+                console.log(data[i].Category + ' | ' + value);
+
+                if (data[i].Category == value) { sortedlist.push(data[i]) }
+
+            }
+
+            console.log('blir kalt')
+
+            $scope.posts = sortedlist;
+
+            console.log($scope.posts)
+
+        });
     }
+
+
 
 });

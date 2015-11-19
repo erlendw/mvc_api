@@ -20,7 +20,8 @@ namespace TeaShopFaq.Models
                     Answer = p.Answer,
                     TimeStamp = p.TimeStamp,
                     UserEmail = p.UserEmail,
-                    IsAnswered = p.IsAnswered
+                    IsAnswered = p.IsAnswered,
+                    Category = p.Category
                 }).ToList();
 
                 return AllPosts;
