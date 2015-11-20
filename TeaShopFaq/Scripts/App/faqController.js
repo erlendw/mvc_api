@@ -1,6 +1,6 @@
 ﻿
 // create the module and name it scotchApp
-var App = angular.module('App', ['ngRoute']);
+var App = angular.module('App', ['ngRoute', 'ui.bootstrap']);
 
 App.config(function ($routeProvider) {
     $routeProvider
@@ -22,7 +22,10 @@ App.config(function ($routeProvider) {
         // route for the contact page
         .when('/answer', {
             templateUrl: 'pages/answer.html'
-        });
+        })
+    .when('/test', {
+        templateUrl: 'pages/accordiontest.html'
+    });
 });
 
 // create the controller and inject Angular's $scope
@@ -60,10 +63,13 @@ App.controller('postController', function ($scope, $http, $location) {
 
         console.log(data)
 
-       $http.put('/api/posts', data).success(function (data){
-           $scope.initFirst();
+        $http.put('/api/posts', data).success(function (data) {
+            $scope.initFirst();
 
-        })
+        });
+
+        post.PostId = "";
+        post.Answer = "";
     }
 
     $scope.initFirst = function () {

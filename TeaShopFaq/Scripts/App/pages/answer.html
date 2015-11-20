@@ -25,11 +25,33 @@
 
     </table>
 
-    <div>
-        <form novalidate>
-            Id: <input type="text" ng-model="post.PostId" /><br />
-            Answer: <input type="text" ng-model="post.Answer" /><br />
-            <input type="submit" ng-click="updatePost(post)" value="Save" />
-        </form>
+    <div class="col-md-12 zeropad">
+        <div class="well well-sm">
+            <form class="form-horizontal">
+                <fieldset>
+
+                    <legend class="text-center header"><h3 class="featurette-heading">Above you see a list of unanswered questions. Submit answers here!:</h3></legend>
+
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-2">
+                            <input type="number" placeholder="Post ID" class="form-control" ng-model="post.PostId">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-2">
+                            <textarea class="form-control" placeholder="Submit your answer here!" rows="7" style="resize: none;" ng-model="post.Answer"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <input type="button" class="btn btn-primary btn-lg" ng-click="updatePost(post)" value="Submit" />
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
     </div>
 </div>
