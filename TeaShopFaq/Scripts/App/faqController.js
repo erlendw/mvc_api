@@ -28,7 +28,6 @@ App.config(function ($routeProvider) {
 // create the controller and inject Angular's $scope
 App.controller('postController', function ($scope, $http, $location) {
 
-
     $scope.addPost = function (post) {
 
         console.log(post.UserEmail);
@@ -40,6 +39,15 @@ App.controller('postController', function ($scope, $http, $location) {
         }
 
         $http.post('/api/posts', data)
+
+        //data bind causes issues, is updated after obj data is posted
+
+        post.Question = "";
+        post.Category = null;
+        post.UserEmail = "";
+
+        
+        
 
     }
 
@@ -54,6 +62,7 @@ App.controller('postController', function ($scope, $http, $location) {
 
        $http.put('/api/posts', data).success(function (data){
            $scope.initFirst();
+
         })
     }
 

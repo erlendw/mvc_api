@@ -1,5 +1,5 @@
 ﻿<div class="container">
-    <form novalidate class="simple-form">
+    <form novalidate>
         Your e-mail: <input type="text" ng-model="post.UserEmail" /><br />
         Answer: <input type="text" ng-model="post.Question" /><br />
         <label class="radio-inline">
@@ -11,6 +11,6 @@
         <label class="radio-inline">
             <input type="radio" name="radioGroup" id="radio3" value="Tea Selection" ng-model="post.Category"> Tea Selection
         </label>
-        <input type="submit" ng-click="addPost(post)" value="Save" />
+        <input type="submit" ng-click="addPost(post,addForm)" value="Save" />
     </form>
 </div>
