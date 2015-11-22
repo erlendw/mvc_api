@@ -18,6 +18,11 @@ namespace TeaShopFaq.Controllers
             return db.GetAllPosts();
         }
 
+        public Post Get(int id)
+        {
+            return null;
+        }
+
         public void Post(Post post)
         {
             db.AddPost(post);
@@ -27,6 +32,8 @@ namespace TeaShopFaq.Controllers
         {
             db.UpdatePost(post);
         }
+
+
 
 
     }

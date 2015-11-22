@@ -10,6 +10,10 @@ App.config(function ($routeProvider) {
             templateUrl: 'pages/home.html'
         })
 
+        .when('/:id', {
+                    templateUrl: 'pages/post.html'
+                })
+
         // route for the about page
         .when('/about', {
             templateUrl: 'pages/about.html'
@@ -29,7 +33,7 @@ App.config(function ($routeProvider) {
 });
 
 // create the controller and inject Angular's $scope
-App.controller('postController', function ($scope, $http, $location) {
+App.controller('postController', function ($scope, $http, $location, $routeParams) {
 
     $scope.addPost = function (post) {
 
@@ -118,6 +122,12 @@ App.controller('postController', function ($scope, $http, $location) {
             console.log($scope.posts)
 
         });
+    }
+
+    $scope.getSpecificPost = function (){
+
+        $scope.id = parseInt($routeParams.id);
+
     }
 
 

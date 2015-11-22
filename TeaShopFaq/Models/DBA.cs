@@ -76,6 +76,19 @@ namespace TeaShopFaq.Models
 
         }
 
+        public void GetSpecificPost(int id)
+        {
+            using (var db = new FaqContext())
+            {
+                Posts post = (from p in db.Posts
+                              where p.PostId == id
+                              select p).First();
+
+                Debug.WriteLine(post);
+            }
+
+        }
+
     }
 
 
