@@ -3,20 +3,34 @@
 
     <div class="col-md-12 zeropad">
         <div class="well well-sm">
-            <form class="form-horizontal">
+            <form class="form-horizontal" name="Form">
                 <fieldset>
 
                     <legend class="text-center header"><h3 class="featurette-heading">Did you not find what you were looking for? Submit it here!:</h3></legend>
 
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-2">
-                            <input id="email" name="email" type="text" placeholder="Mailadresse" class="form-control" ng-model="post.UserEmail">
+                            <input id="email" name="email" type="text" placeholder="Mailaddress" class="form-control" ng-model="post.UserEmail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>
+                           
+
+                            <div ng-messages="Form.email.$error"  role="alert">
+                                <div ng-message="required" style="color:orchid">Email is required!</div>
+                                <div ng-message="pattern" style="color:orchid">Please submit a valid Email!</div>
+                            </div>
+
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-2">
-                            <textarea class="form-control" id="message" name="message" placeholder="Please submit your question here!" rows="7" style="resize: none;" ng-model="post.Question"></textarea>
+                            <textarea class="form-control" name="message" placeholder="Please submit your question here!" rows="7" style="resize: none;" ng-model="post.Question" ng-minlength="5" required></textarea>
+                      
+
+                            <div ng-messages="Form.message.$error" role="alert">
+                                <div ng-message="required" style="color:orchid">Message is required!</div>
+                                <div ng-message="minlength" style="color:orchid">Your question is too short!</div>
+                            </div>
+                        
                         </div>
                     </div>
 

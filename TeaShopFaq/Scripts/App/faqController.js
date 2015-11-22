@@ -1,6 +1,6 @@
 ﻿
 // create the module and name it scotchApp
-var App = angular.module('App', ['ngRoute', 'ui.bootstrap']);
+var App = angular.module('App', ['ngRoute', 'ngMessages']);
 
 App.config(function ($routeProvider) {
     $routeProvider
@@ -10,7 +10,7 @@ App.config(function ($routeProvider) {
             templateUrl: 'pages/home.html'
         })
 
-        .when('/:id', {
+        .when('/posts/:id', {
                     templateUrl: 'pages/post.html'
                 })
 
@@ -39,19 +39,23 @@ App.controller('postController', function ($scope, $http, $location, $routeParam
 
         console.log(post.UserEmail);
 
-        var data = {
-            Question: post.Question,
-            Category: post.Category,
-            UserEmail: post.UserEmail
+        if (post.UserEmail != null) {
+
+            var data = {
+                Question: post.Question,
+                Category: post.Category,
+                UserEmail: post.UserEmail
+            }
+
+            $http.post('/api/posts', data)
+
+            //data bind causes issues, is updated after obj data is posted
+
+            post.Question = "";
+            post.Category = null;
+            post.UserEmail = "";
+
         }
-
-        $http.post('/api/posts', data)
-
-        //data bind causes issues, is updated after obj data is posted
-
-        post.Question = "";
-        post.Category = null;
-        post.UserEmail = "";
 
         
         
@@ -126,8 +130,16 @@ App.controller('postController', function ($scope, $http, $location, $routeParam
 
     $scope.getSpecificPost = function (){
 
-        $scope.id = parseInt($routeParams.id);
 
+        $scope.id = parseInt($routeParams.id);
+        console.log($scope.id)
+
+    }
+
+    $scope.rerouteToPost = function (post) {
+
+        $location.path('/posts/' + post.PostId);
+        
     }
 
 

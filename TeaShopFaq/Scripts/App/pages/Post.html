@@ -2,18 +2,25 @@
 
     <hr />
 
-    <div ng-repeat="post in posts" ng-if="post.PostId == id">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>{{post.Question}}</h4>
-                </div>
-                <div class="panel-body">
-                    <p>{{post.Answer}}</p>
-                    <a class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span>See Details</a>
+    <div ng-if="(id) <= posts.length">
+
+        <div ng-repeat="post in posts" ng-if="post.PostId == id">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>{{post.Question}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{post.Answer}}</p>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 
-</div>
+    <div ng-if="(id) > posts.length">
+        dis id not here
+    </div>
+
+    </div>
