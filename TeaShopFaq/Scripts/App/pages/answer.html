@@ -27,20 +27,30 @@
 
     <div class="col-md-12 zeropad">
         <div class="well well-sm">
-            <form class="form-horizontal">
+            <form class="form-horizontal" name="FormAnswer">
                 <fieldset>
 
                     <legend class="text-center header"><h3 class="featurette-heading">Above you see a list of unanswered questions. Submit answers here!:</h3></legend>
 
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-2">
-                            <input type="number" placeholder="Post ID" class="form-control" ng-model="post.PostId">
+                            <input type="number" name="ID" placeholder="Post ID" class="form-control" ng-model="post.PostId" required>
+                        
+                            <div ng-messages="FormAnswer.ID.$error" role="alert">
+                                <div ng-message="required" style="color:orchid">ID is required!</div>
+                            </div>
+                        
                         </div>
                     </div>
-
+                    
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-2">
-                            <textarea class="form-control" placeholder="Submit your answer here!" rows="7" style="resize: none;" ng-model="post.Answer"></textarea>
+                            <textarea class="form-control" placeholder="Submit your answer here!" rows="7" style="resize: none;" ng-model="post.Answer" name="Answer" required></textarea>
+                        
+                            <div ng-messages="FormAnswer.Answer.$error" role="alert">
+                                <div ng-message="required" style="color:orchid">Answer is required!</div>
+                            </div>    
+                        
                         </div>
                     </div>
 

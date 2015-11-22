@@ -9,7 +9,7 @@
 
             
             <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="All" ng-change='sortList(value)'>All</label>
-            <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="Newest" ng-change='sortList(value)'>Newest</label>
+            <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="Relevant" ng-change='sortList(value)'>Most Relevant (highest rated)</label>
             <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="Shipping" ng-change='sortList(value)'>Shipping</label>
             <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="Pricing" ng-change='sortList(value)'>Pricing</label>
             <label class="btn btn-default"><input name="sorter" type="radio" ng-model="value" value="Tea Selection" ng-change='sortList(value)'>Tea Selection</label>
@@ -28,7 +28,8 @@
                     </div>
                     <div class="panel-body">
                         <p>{{post.Answer}}</p>
-                        <button class="btn btn-default" ng-click="rerouteToPost(post)"><span class="glyphicon glyphicon-eye-open"></span>See Details</button>
+                        <button class="btn btn-default" ng-click="rerouteToPost(post)"><span class="glyphicon glyphicon-eye-open"></span></button>
+                        <button class="btn btn-default" ng-click="addVote(post)" title="Faq dis!"><span class="glyphicon glyphicon-heart"></span> {{post.Votes}}</button>
                     </div>
                 </div>
             </div>

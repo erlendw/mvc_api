@@ -33,13 +33,11 @@ App.config(function ($routeProvider) {
 });
 
 // create the controller and inject Angular's $scope
-App.controller('postController', function ($scope, $http, $location, $routeParams) {
+App.controller('postController', function ($scope, $http, $location, $routeParams, $filter) {
 
     $scope.addPost = function (post) {
 
-        console.log(post.UserEmail);
-
-        if (post.UserEmail != null) {
+        if (post.UserEmail != null && post.Question != null) {
 
             var data = {
                 Question: post.Question,
@@ -64,20 +62,33 @@ App.controller('postController', function ($scope, $http, $location, $routeParam
 
     $scope.updatePost = function (post) {
 
-        var data = {
-            PostId: post.PostId,
-            Answer: post.Answer
-        }
+        if (post.Plus == null) {
 
-        console.log(data)
+            var data = {
+                PostId: post.PostId,
+                Answer: post.Answer,
+            }
+            
+        }
+        else {
+
+            var data = {
+                PostId: post.PostId,
+                Votes: post.Plus
+            }
+
+        }
 
         $http.put('/api/posts', data).success(function (data) {
             $scope.initFirst();
-
         });
 
-        post.PostId = "";
-        post.Answer = "";
+        if (post.Plus == null) {
+
+            post.PostId = "";
+            post.Answer = "";
+
+        }
     }
 
     $scope.initFirst = function () {
@@ -96,13 +107,15 @@ App.controller('postController', function ($scope, $http, $location, $routeParam
 
 
 
-            if (value == 'All') {
+            if (value == 'Relevant') {
 
                 $scope.posts = data;
 
+                $scope.posts = $filter('orderBy')($scope.posts, '-Votes');
+
             }
 
-            else if (value == 'Newest') {
+            else if (value == 'All') {
 
                 $scope.posts = data;
 
@@ -140,6 +153,16 @@ App.controller('postController', function ($scope, $http, $location, $routeParam
 
         $location.path('/posts/' + post.PostId);
         
+    }
+
+    $scope.addVote = function (post) {
+
+        post.Plus = 1;
+
+        $scope.updatePost(post);
+
+
+
     }
 
 

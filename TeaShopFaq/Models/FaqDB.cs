@@ -20,6 +20,7 @@ namespace TeaShopFaq.Models
         public string UserEmail { get; set; }
         public string Category { get; set; }
         public bool IsAnswered { get; set; }
+        public int Votes { get; set; }
 
     }
 

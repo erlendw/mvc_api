@@ -21,7 +21,8 @@ namespace TeaShopFaq.Models
                     TimeStamp = p.TimeStamp,
                     UserEmail = p.UserEmail,
                     IsAnswered = p.IsAnswered,
-                    Category = p.Category
+                    Category = p.Category,
+                    Votes = p.Votes
                 }).ToList();
 
                 return AllPosts;
@@ -62,29 +63,31 @@ namespace TeaShopFaq.Models
         }
 
         public void UpdatePost(Post InnPost)
-        { 
+        {
             using (var db = new FaqContext())
-            {
+            {      
+                        
+
                 Posts post = (from p in db.Posts
                               where p.PostId == InnPost.PostId
                               select p).First();
-                post.Answer = InnPost.Answer;
-                post.TimeStamp = DateTime.Now.ToString();
-                post.IsAnswered = true;
-                db.SaveChanges();
-            }
 
-        }
+                if (InnPost.Votes == 1)
+                {
+                    post.Votes = post.Votes + 1;
+                    db.SaveChanges();
+                }
 
-        public void GetSpecificPost(int id)
-        {
-            using (var db = new FaqContext())
-            {
-                Posts post = (from p in db.Posts
-                              where p.PostId == id
-                              select p).First();
+                else
+                {
+                    post.Answer = InnPost.Answer;
+                    post.TimeStamp = DateTime.Now.ToString();
+                    post.IsAnswered = true;
+                    db.SaveChanges();
+                }
 
-                Debug.WriteLine(post);
+            
+
             }
 
         }
