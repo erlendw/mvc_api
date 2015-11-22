@@ -34,10 +34,11 @@
 
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-2">
-                            <input type="number" name="ID" placeholder="Post ID" class="form-control" ng-model="post.PostId" required>
+                            <input type="number" name="ID" placeholder="Post ID" class="form-control" ng-model="post.PostId" ng-max="posts.length" required>
                         
                             <div ng-messages="FormAnswer.ID.$error" role="alert">
                                 <div ng-message="required" style="color:orchid">ID is required!</div>
+                                <div ng-message="max" style="color:orchid">Number is too high!</div>
                             </div>
                         
                         </div>

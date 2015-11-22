@@ -1,1 +1,86 @@
 ﻿
+
+
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+
+        <h2>Readme! Noen nice funksjoner!</h2>
+
+        <div class="lead">
+
+            Alt blir sortert ved å utnytte angulars data binding gjennom å
+            manipulere scope variablen listet under.
+
+        </div>
+
+        <pre class="prettyprint">
+  
+                              $scope.posts = data;
+
+</pre>
+
+        <div class="lead">
+            Jeg kunne mest sansynelig lagret den originale listen lokalt, for å slippe å gjøre nye kall til apiet. Men i vanlig bruk er ikke dette noe man legger merke til. Metoden er listet under.
+        </div>
+
+        <pre class="prettyprint">
+        $scope.sortList = function (value) {
+            var sortedlist = Array();
+        $http.get('/api/posts').success(function (data) {
+            if (value == 'Relevant') {
+                $scope.posts = data;
+                $scope.posts = $filter('orderBy')($scope.posts, '-Votes');
+            }
+            else if (value == 'All') {
+                $scope.posts = data;
+            }
+            else {
+                for (i = 0; i < data.length; i++) {
+                    console.log(data[i].Category + ' | ' + value);
+                    if (data[i].Category == value) { sortedlist.push(data[i]) }
+                }
+                $scope.posts = sortedlist;
+            }
+            
+            console.log($scope.posts)
+        });
+    }
+    </pre>
+
+        <hr />
+
+        <div class="lead">
+
+            Jeg har brukt tre ferdiglagde moduler som er listet under.
+
+        </div>
+
+        <pre class="prettyprint">
+        var App = angular.module('App', ['ngRoute', 'ngMessages', 'ngSanitize']);
+    </pre>
+
+        <div class="lead">
+
+            Route brukes til å loade de forskjellige viewsene med Index som master. Messages brukes til å vise kravene for feltene som krever inputvalidering. Sanitize brukes til å gjøre alle url'er som legges inn klikkbare
+
+        </div>
+
+        <hr />
+
+        <div class="lead">
+            Jeg har også implementert en søkefunksjon, gjennom å sette ng-model til search og legge til ett filter på ng-repeat
+        </div>
+
+        <pre class="prettyprint">
+                ng-model="search"
+                ng-repeat="post in posts | filter:search"       
+        </pre>
+
+
+        <hr />
+
+
+
+
+    </div>
+</div>

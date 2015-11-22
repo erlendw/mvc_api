@@ -1,6 +1,4 @@
-﻿
-// create the module and name it scotchApp
-var App = angular.module('App', ['ngRoute', 'ngMessages']);
+﻿var App = angular.module('App', ['ngRoute', 'ngMessages', 'ngSanitize']);
 
 App.config(function ($routeProvider) {
     $routeProvider
@@ -61,6 +59,9 @@ App.controller('postController', function ($scope, $http, $location, $routeParam
     }
 
     $scope.updatePost = function (post) {
+        if (post.PostId != null || !(Number.isInteger(post.PostId))) {
+
+        console.log(post.PostId)
 
         if (post.Plus == null) {
 
@@ -79,17 +80,38 @@ App.controller('postController', function ($scope, $http, $location, $routeParam
 
         }
 
+        console.log(post.PostId)
+        
         $http.put('/api/posts', data).success(function (data) {
-            $scope.initFirst();
-        });
+
+            if ($scope.currentsort != null) {
+
+                $scope.sortList($scope.currentsort)
+
+        }
+
+        else {
+
+                $scope.initFirst();
+
+        }
+
+
+        })
 
         if (post.Plus == null) {
 
             post.PostId = "";
             post.Answer = "";
 
+        
+
         }
     }
+    };
+
+
+    
 
     $scope.initFirst = function () {
 
@@ -100,6 +122,8 @@ App.controller('postController', function ($scope, $http, $location, $routeParam
     }
 
     $scope.sortList = function (value) {
+
+        $scope.currentsort = value;
 
         var sortedlist = Array();
 
@@ -142,7 +166,6 @@ App.controller('postController', function ($scope, $http, $location, $routeParam
     }
 
     $scope.getSpecificPost = function (){
-
 
         $scope.id = parseInt($routeParams.id);
         console.log($scope.id)
